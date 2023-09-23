@@ -10,13 +10,15 @@
 ## Usage
 
 
-### `help` :  Shows the User Guide
+### Help
+**`help` :  Shows the User Guide**
 
 Opens a browser with the help page (User Guide)
 
 Format: `help`
 
-### `list` :  Shows the list of cards
+### List
+**`list` :  Shows the list of cards**
 
 Shows the list of cards with both the original word and the corresponding translation.
 
@@ -33,7 +35,8 @@ Output:
 ![img.png](ListUi.png)
 
 
-### `stop` :  Stops the current flashcard session
+### Stop
+**`stop` :  Stops the current flashcard session**
 
 Stops the current flashcard session and returns to the main menu.
 
@@ -41,14 +44,16 @@ Format: `stop`
 
 Output: `Congratulations! You have completed FINISHED_WORDS out of TOTAL_WORDS words!`
 
-### `exit` : Terminates the program
+### Exit
+**`exit` : Terminates the program**
 
 Closes the GUI and terminates the Java program
 
 Format: `exit`
 
 
-### `save` : Changes save location
+### Save
+**`save` : Changes save location**
 
 FlashLingo data is stored automatically to hard disk after every change, there is no need to manually save.
 
@@ -67,7 +72,8 @@ Output:
 * `Success`: File has been successfully saved to <FILEPATH>
 * `Failure`: File has not been saved to <FILEPATH>. Please confirm that the path is correct
 
-### `load` : Loads the previously stored data 
+### Load
+**`load` : Loads the previously stored data **
 
 Loads the data stored by the save function into the program’s list
 
