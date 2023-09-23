@@ -73,7 +73,7 @@ Output:
 * `Failure`: File has not been saved to <FILEPATH>. Please confirm that the path is correct
 
 ### Load
-**`load` : Loads the previously stored data **
+**`load` : Loads the previously stored data**
 
 Loads the data stored by the save function into the program’s list
 
