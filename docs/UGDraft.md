@@ -86,6 +86,30 @@ Format: `flip`/`f`
 
 Output :
 ![img.png](StartUi.png)
+### word : Adding a word
+Adds a word to the flashcard with its translation.
+
+Format: add w/Word t/Translation
+
+* Creates a wild card.
+* Works to add a word with its translation in the expected language.
+* The already saved translation can be overridden with a new translation in a different language.
+Examples:
+* add w/regarder t/look saves the translation of regarder as look
+* add w/entschuldigung t/sorry saves the translation of entschuldigung as sorry
+
+
+### del : Deleting a word
+Deletes a words and its related information
+
+Format: del w/Word
+* Deletes a wild card.
+* Looks up the word and deletes it and all its related information.
+
+Examples:
+* del w/regarder deletes the word and its translation
+* del w/entschuldigung deletes the word and its translation.
+
 
 ### Yes
 **`yes` :  Indicates user has memorized the word**
