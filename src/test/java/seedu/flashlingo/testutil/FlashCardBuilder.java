@@ -10,7 +10,7 @@ import seedu.flashlingo.model.flashcard.words.TranslatedWord;
 /**
  * A utility class to help with building Person objects.
  */
-public class FlashcardBuilder {
+public class FlashCardBuilder {
 
     public static final String DEFAULT_ORIGINAL_WORD = "Hello";
     public static final String DEFAULT_ORIGINAL_WORD_LANGUAGE = "English";
@@ -22,7 +22,7 @@ public class FlashcardBuilder {
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
      */
-    public FlashcardBuilder() {
+    public FlashCardBuilder() {
         originalWord = new OriginalWord(DEFAULT_ORIGINAL_WORD, DEFAULT_ORIGINAL_WORD_LANGUAGE);
         translation = new TranslatedWord(DEFAULT_TRANSLATION, DEFAULT_TRANSLATION_LANGUAGE);
     }
@@ -30,7 +30,7 @@ public class FlashcardBuilder {
     /**
      * Initializes the FlashcardBuilder with the data of {@code personToCopy}.
      */
-    public FlashcardBuilder(FlashCard flashCardToCopy) {
+    public FlashCardBuilder(FlashCard flashCardToCopy) {
         originalWord = flashCardToCopy.getOriginalWord();
         translation = flashCardToCopy.getTranslatedWord();
     }
@@ -38,7 +38,7 @@ public class FlashcardBuilder {
     /**
      * Sets the {@code originalWord} of the {@code flashcard} that we are building.
      */
-    public FlashcardBuilder withOriginalWord(String word, String language) {
+    public FlashCardBuilder withOriginalWord(String word, String language) {
         this.originalWord = new OriginalWord(word, language);
         return this;
     }
@@ -46,7 +46,7 @@ public class FlashcardBuilder {
     /**
      * Sets the {@code translation} of the {@code flashcard} that we are building.
      */
-    public FlashcardBuilder withTranslation(String translation, String language) {
+    public FlashCardBuilder withTranslation(String translation, String language) {
         this.translation = new TranslatedWord(translation, language);
         return this;
     }
