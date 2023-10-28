@@ -416,11 +416,11 @@ The stats command provides insights into a user's learning journey within Flashl
 
 #### Implementation
 
-The stats command accesses the stored number of words remembered from the last session, accesses them and retrun the result as a success rate to help inspire the user to continue learning.
+The stats command accesses the stored number of words remembered from the last session, accesses them and returns the result as a success rate to help inspire the user to continue learning.
 
 The execute method accesses the numberOfWords from the model.
 
-To be added: Making th success rate more relatable by remembering data(storing) from the last session.
+To be added: Making the success rate more relatable by remembering data(storing) from the last session.
 ### Usage
 To know their learning rate, the user can just type in:
 * `stats`
