@@ -35,7 +35,7 @@ public class EndCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof EndCommand)) {
             return false;
         }
 

@@ -99,8 +99,8 @@ public class Flashlingo implements ReadOnlyFlashlingo {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-          .add("FlashCards", flashCards)
-          .toString();
+                .add("FlashCards", flashCards)
+                .toString();
     }
 
     @Override

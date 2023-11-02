@@ -17,7 +17,7 @@ import seedu.flashlingo.model.flashcard.FlashCard;
  * An Immutable Flashlingo that is serializable to JSON format.
  */
 @JsonRootName(value = "flashlingo")
-class JsonSerializableFlashlingo {
+public class JsonSerializableFlashlingo {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
