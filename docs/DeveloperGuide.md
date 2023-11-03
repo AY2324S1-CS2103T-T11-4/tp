@@ -420,7 +420,7 @@ The stats command accesses the stored number of words remembered from the last s
 
 The execute method accesses the numberOfWords from the model.
 
-To be added: Making th success rate more relatable by remembering data(storing) from the last session.
+To be added: Making the success rate more relatable by remembering data(storing) from the last session.
 ### Usage
 To know their learning rate, the user can just type in:
 * `stats`
