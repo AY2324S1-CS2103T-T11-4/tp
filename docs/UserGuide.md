@@ -194,11 +194,11 @@ Format: `start`
 Output: `Review Session has been started.`
 
 **Note**
-* Users are not allowed to start a new review session if they are already in one. In this case,   
-`Sorry, currently you are in a review session. Your command is not supported.`   
+* Users are not allowed to start a new review session if they are already in one. In this case,
+`Sorry, currently you are in a review session. Your command is not supported.`
 `Please end the review session first.` will be prompted.
-* If there are no words to review, users will not be able to start review session. `You have no more words to review!`  
-  will be displayed.
+* If there are no words to review, users will not be able to start review session. `You have no more words to review!`
+will be displayed.
 
 
 ### Ending the current review session : `end`
