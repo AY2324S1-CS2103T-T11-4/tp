@@ -195,8 +195,8 @@ Output: `Review Session has been started.`
 
 **Note**
 * Users are not allowed to start a new review session if they are already in one. In this case,   
-  `Sorry, currently you are in a review session. Your command is not supported.`   
-  `Please end the review session first.` will be prompted.
+`Sorry, currently you are in a review session. Your command is not supported.`   
+`Please end the review session first.` will be prompted.
 * If there are no words to review, users will not be able to start review session. `You have no more words to review!`  
   will be displayed.
 
@@ -210,7 +210,7 @@ Format: `end`
 Output: `Review Session has ended.`
 
 **Note**
-* Users are not allowed to end a review session if the session hasn't been started yet. The message of `You are not in a review session.`  
+* Users are not allowed to end a review session if the session hasn't been started yet. The message of `You are not in a review session.`
   will be given.
 
 ### Revealing translation of the flash card : `reveal`
@@ -224,7 +224,7 @@ Output : `The translation is [CURRENT FLASH CARD'S TRANSLATION]`
 Examples:![img.png](images/Reveal.png)
 
 **Note**
-* `reveal` command will only take effect during review session. Otherwise, error message `You are not in a review session.`  
+* `reveal` command will only take effect during review session. Otherwise, error message `You are not in a review session.`
   will be printed out.
 * Pressing `reveal` button will have the same effect, and users can reveal the translation without the constraint of review session.
 
@@ -241,7 +241,7 @@ or
 if there's no word left in the review session.
 
 **Note**
-* `yes` command will only take effect during review session. Otherwise, error message `You are not in a review session.`  
+* `yes` command will only take effect during review session. Otherwise, error message `You are not in a review session.`
   will be printed out.
 * Pressing `yes` button will have the same effect.
 
@@ -257,8 +257,8 @@ or
 ![img.png](images/No2.png)
 if there's no word left in the review session.
 **Note**
-* `no` command will only take effect during review session. Otherwise, error message`You are not in a review session.`  
-  will be printed out.
+* `no` command will only take effect during review session. Otherwise, error message`You are not in a review session.`
+will be printed out.
 * Pressing `no` button will have the same effect.
 
 ### Show learning statistics : `stats`

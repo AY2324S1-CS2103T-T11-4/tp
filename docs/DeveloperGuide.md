@@ -228,7 +228,8 @@ Given below is an example usage scenario and how the start/end mechanism behaves
 
 **Step 2:** The user executes the "start" command by interacting with the command line. This will make `FlashlingoParser` class to create its `SessionManager` instance.
 
-![SessionManagerClass](images/SessionManagerClass.png)  
+![SessionManagerClass](images/SessionManagerClass.png)
+<br>
 **Note**: The `SessionManager` class adheres to the **Singleton pattern**, guaranteeing that only one instance of the class
 can exist. This architectural choice provides a single point of access for managing review sessions and
 maintaining the state of whether the session is a review session or not. With the Singleton pattern in place, you can be
@@ -240,7 +241,8 @@ management within the application.
 **Step 4:** The user chooses to end the review session by using `end` command. This action will alternate the boolean value
 inside SessionManager class indicating current session is review session or not.
 
-![StartSequenceModel](images/StartSequenceDiagram.png)  
+![StartSequenceModel](images/StartSequenceDiagram.png)
+<br>
 **Recording Vocabulary Review:**
 - The `SessionManager` logs the vocabulary words and phrases reviewed and practiced during the language learning session.
 - This feature provides users with the ability to track their progress and revisit the words they've worked on.
@@ -383,7 +385,8 @@ with `UserPrefsStorage` when the application is launched. Then `UI` component wi
 component and set the initial theme. After a `SwitchCommand` is executed by the `LogicManager`, `Model` component will
 update the theme in  `UserPrefs`. Finally, `UI` component will update the theme accordingly.
 
-Step 1: Theme initialization.  
+Step 1: Theme initialization.
+<br>
 Similar to GUI settings, the theme is regarded as a component of user preference stored in `UserPrefs` and in Json
 file **preferences.json**.
 
@@ -391,8 +394,8 @@ The initial theme setting works as follows: After constructing the `ModelManager
 loaded `UserPrefs`, `MainWindow` will obtain theme preference from `LogicManager` and set the initial theme. If no data
 can be read from the preference file, the **Default** theme will be used by `Logic` and `Model` components, and set by
 `UI`.
-
-Step 2: Theme switching.  
+Step 2: Theme switching.
+<br>
 The following sequence diagram shows how the theme switching works. For the discussion purpose, parsing of the command
 and `Storage#saveFlashlingo(ReadOnlyFlashlingo)` are omitted:
 
@@ -653,6 +656,5 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}
 1. _{ more test cases …​ }_
