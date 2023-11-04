@@ -42,19 +42,22 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (originalWord.isEmpty() | translationWord.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_EMPTY_VALUE, AddCommand.MESSAGE_USAGE));
         }
-
-        if (arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_WORD_LANGUAGE,
-                PREFIX_TRANSLATED_WORD_LANGUAGE)) {
-            OriginalWord word = ParserUtil.parseWord(originalWord,
+        OriginalWord word;
+        TranslatedWord translation;
+        if (arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_WORD_LANGUAGE)) {
+            word = ParserUtil.parseWord(originalWord,
                     argMultimap.getValue(PREFIX_ORIGINAL_WORD_LANGUAGE).get());
-            TranslatedWord translation = ParserUtil.parseTranslation(translationWord,
-                    argMultimap.getValue(PREFIX_TRANSLATED_WORD_LANGUAGE).get());
-            return new AddCommand(word, translation);
         } else {
-            OriginalWord word = ParserUtil.parseWord(originalWord, "");
-            TranslatedWord translation = ParserUtil.parseTranslation(translationWord, "");
-            return new AddCommand(word, translation);
+            word = ParserUtil.parseWord(originalWord, "");
         }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_TRANSLATED_WORD_LANGUAGE)) {
+            translation = ParserUtil.parseTranslation(translationWord,
+                    argMultimap.getValue(PREFIX_TRANSLATED_WORD_LANGUAGE).get());
+        } else {
+            translation = ParserUtil.parseTranslation(translationWord, "");
+        }
+        return new AddCommand(word, translation);
     }
 
     /**
