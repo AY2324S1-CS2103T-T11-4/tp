@@ -83,7 +83,7 @@ abstract class Word {
      * @return True or False depending on whether this word is in the same language as language
      */
     public boolean isSameLanguage(String language) {
-        return this.language.equals(language);
+        return this.language.toLowerCase().equals(language.toLowerCase());
     }
 
     /**
