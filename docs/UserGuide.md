@@ -76,16 +76,27 @@ Format: `help`
 ### Listing all flash cards : `list`
 
 Shows the list of flash cards with both the original word and the corresponding translation.
-
+* Lists all the flash cards saved
+  
 Format: `list`
+> All the saved flash cards, regardless of the review date, are listed.
 
 Output:
-* `Listed all flash cards`
-  `1. ORIGINAL_WORD - TRANSLATION`
-  `2. ORIGINAL_WORD - TRANSLATION`
-  `3. ORIGINAL_WORD - TRANSLATION`
-  `...`
 
+| Before/After the review session | ![img.png](images/ListSuccess.png) |
+|:-----------------------:|:------------------------------------------:|
+| **During the review session** | ![img.png](images/ListDuringReview.png) |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Things to note about the `list` command:**<br>
+* `list` command cannot be used during a review session
+   * To ensure retention, only the flash cards - with the words to be reviewed - can be seen during the review session.
+   * As soon as the review session ends, all the flash cards can be listed once again
+> The error message:<br>
+> Sorry, currently you are in a review session. Your command is not supported.<br>
+> Please end the review session first.
+</div>
 
 ### Adding a flash card: `add`
 :information_source: Notes about adding words:
@@ -252,11 +263,26 @@ will be printed out.
 
 ### Show learning statistics : `stats`
 
-Displays learning statistics, i.e, the total number of flash cards and the number of words remembered.
+To help track user progress and inspire continued learning, this command offers detailed statistics:
+* **Total Flash Cards**: Displays the total count of flash cards you have saved.
+* **Remembered Words**: Shows the number of terms you have successfully retained.
+* **Success Rate**: Presents a percentage representing your learning success, motivating you to keep improving.
 
-Format: `stats`
+**Format**: `stats`
+**Example**:
+*`stats` would give the following output
 
+Output:
+![img.png](images/Stats.png)
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Things to note about the `stats` command:**<br>
+* The stats command is operational exclusively outside active review sessions.
+* If attempted inside a review session, the system will respond with the following error message:
+> Sorry, currently you are in a review session. Your command is not supported.<br>
+> Please end the review session first.
+</div>
 
 ### Filtering list with specified language : `language`
 
@@ -266,9 +292,25 @@ Format: `language <SPECIFIED_LANGUAGE>`
 
 ### Getting list for revision : `review`
 
-* `review` : Returns a list of words that the user should revise today.
+Displays the flash cards of all the words to be reviewed that day
+* The `review` command will display only the flash cards due for study on the current day. If you wish to see all your saved flash cards without date restrictions, please enter the `list` command.
 
 Format: `review`
+
+**Output:**
+| When there are words to be reviewed | ![img.png](images/ReviewSuccess.png) |
+|:--------------:|:---------------------------------:|
+| **When no words to be reviewed** | ![img.png](images/ReviewOver.png)  |
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Things to note about the `review` command:**<br>
+* Flash cards will not be displayed in the following scenarios:
+   * No flash cards are scheduled for review on the current day.
+   * All flash cards due for review on the current day have already been completed.
+> The error message:<br>
+> 0 flashcards listed!<br>
+> []
+</div>
 
 ### Loading list of words: `load`
 Loads an Excel file of words into the app. The words will be added to the current list of flash cards and included in the
@@ -312,10 +354,12 @@ Output:
 
 ### Exiting the program : `exit`
 
-Closes the GUI and terminates the Java program
+Safely terminates the Flashlingo application and closes the graphical user interface (GUI).
 
 Format: `exit`
 
+Example:
+* Input exit to end your session and close the application.
 
 
 ### Saving the data
