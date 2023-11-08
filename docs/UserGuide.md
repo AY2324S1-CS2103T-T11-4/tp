@@ -383,7 +383,7 @@ Safely terminates the Flashlingo application and closes the graphical user inter
 Format: `exit`
 
 Example:
-* Input exit to end your session and close the application.
+* Input exit to end your session and close the application
 
 ### Saving the data
 
