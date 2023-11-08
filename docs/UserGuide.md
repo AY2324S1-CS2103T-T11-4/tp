@@ -283,8 +283,8 @@ if there's no word left in the review session.
 
 To help track user progress and inspire continued learning, this command offers detailed statistics:
 * **Total Flash Cards**: Displays the total count of flash cards you have saved.
-* **Remembered Words**: Shows the number of terms you have successfully retained.
-* **Success Rate**: Presents a percentage representing your learning success, motivating you to keep improving.
+* **Remembered Words**: Shows the number of terms you have successfully retained in this session.
+* **Success Rate**: Presents a percentage representing your learning success for this session, motivating you to keep improving.
 
 **Format**: `stats`
 **Example**:
@@ -311,14 +311,14 @@ Format: `language <SPECIFIED_LANGUAGE>`
 ### Getting list for revision : `review`
 
 Displays the flash cards of all the words to be reviewed that day
-* The `review` command will display only the flash cards due for study on the current day. If you wish to see all your saved flash cards without date restrictions, please enter the `list` command.
+* The review command will present flash cards selected by Flash Lingo based on your level, utilizing the Leitner system.
+* If you wish to view all your saved flash cards without the Leitner system's selection criteria, please use the `list` command.
 
 Format: `review`
 
 **Output:**
-| When there are words to be reviewed | ![img.png](images/ReviewSuccess.png) |
-|:--------------:|:---------------------------------:|
-| **When no words to be reviewed** | ![img.png](images/ReviewOver.png)  |
+![img.png](images/ReviewSuccess.png)
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Things to note about the `review` command:**<br>
@@ -326,8 +326,7 @@ Format: `review`
    * No flash cards are scheduled for review on the current day.
    * All flash cards due for review on the current day have already been completed.
 > The error message:<br>
-> 0 flashcards listed!<br>
-> []
+> 0 flash card(s) listed!<br>
 </div>
 
 ### Loading list of words: `load`
