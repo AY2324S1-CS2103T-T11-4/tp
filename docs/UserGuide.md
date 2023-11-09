@@ -297,6 +297,7 @@ Output:
 
 **:information_source: Things to note about the `stats` command:**<br>
 * The stats command is operational exclusively outside active review sessions.
+* The success rate is calculated solely on the basis of the current session.
 * If attempted inside a review session, the system will respond with the following error message:
 > Sorry, currently you are in a review session. Your command is not supported.<br>
 > Please end the review session first.
