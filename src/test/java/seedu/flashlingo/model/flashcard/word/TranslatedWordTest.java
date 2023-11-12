@@ -54,18 +54,6 @@ class TranslatedWordTest {
     @Test
     void testToString() {
         TranslatedWord translatedWord = new TranslatedWord("Hello", " eng ");
-        assertEquals(translatedWord.toString(), "Hello");
-    }
-
-    @Test
-    void isOriginalWord() {
-        TranslatedWord translatedWord = new TranslatedWord("Hello", " eng ");
-        assert(!translatedWord.isOriginalWord());
-    }
-
-    @Test
-    void isTranslatedWord() {
-        TranslatedWord translatedWord = new TranslatedWord("Hello", " eng ");
-        assert(translatedWord.isTranslatedWord());
+        assertEquals(translatedWord.toString(), "Hello (eng)");
     }
 }

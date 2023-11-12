@@ -9,7 +9,7 @@ import seedu.flashlingo.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new RevealCommand object
  */
-public class FlipCommandParser implements Parser<RevealCommand> {
+public class RevealCommandParser implements Parser<RevealCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the RevealCommand

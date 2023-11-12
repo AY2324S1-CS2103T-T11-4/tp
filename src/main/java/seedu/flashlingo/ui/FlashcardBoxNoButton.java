@@ -50,7 +50,6 @@ public class FlashcardBoxNoButton extends UiPart<Region> {
     private MainWindow mw;
     private int index;
 
-
     /**
      * Creates a {@code FlashCard code} with the given {@code FlashCard} and index to display.
      */
@@ -63,16 +62,15 @@ public class FlashcardBoxNoButton extends UiPart<Region> {
         translation.setWrapText(true);
         assert(!SessionManager.getInstance().isReviewSession());
         id.setText(displayedIndex + ") ");
-        original.setText(fc.getOriginalWord().toString() + ": ");
+        original.setText(fc.getOriginalWord().getWord() + ": ");
         if (fc.getIsRevealed()) {
-            translation.setText(flashCard.getTranslatedWord().toString());
+            translation.setText(flashCard.getTranslatedWord().getWord());
             reveal.setText(" Hide ");
         } else {
             translation.setText("");
             reveal.setText("Reveal");
         }
-        level.setText("Proficiency Level: " + fc.getProficiencyLevel().getLevel());
-        lang.setText("Translation language: " + fc.getTranslatedWord().getLanguage());
+        level.setText("Current Level: " + fc.getProficiencyLevel().toString());
     }
 
     /**

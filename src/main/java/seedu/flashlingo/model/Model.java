@@ -18,7 +18,6 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<FlashCard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
-    Predicate<FlashCard> PREDICATE_SHOW_NONE_FLASHCARDS = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -110,9 +109,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashCardList(Predicate<FlashCard> predicate);
-
-
-    void setReviewWord(Predicate<FlashCard> predicate, FlashCard flashCard);
 
     /**
      * Evaluates and returns the number of FlashCards

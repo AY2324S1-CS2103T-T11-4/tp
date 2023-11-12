@@ -34,8 +34,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<FlashCard> getFilteredFlashCardList();
 
-    Path getAddressBookFilePath();
-
     /**
      * Returns the user prefs' Flashlingo file path.
      */
@@ -55,9 +53,4 @@ public interface Logic {
      * Returns the user prefs' theme.
      */
     String getTheme();
-
-    /**
-     * Sets the user prefs' theme.
-     */
-    void setTheme(String theme);
 }

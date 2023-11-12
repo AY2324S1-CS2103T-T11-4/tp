@@ -20,7 +20,7 @@ public class YesCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicates user has successfully memorized the word.\n"
             + "Example: " + COMMAND_WORD + " ";
 
-    public static final String MESSAGE_SUCCESS = "Great Job! You have indicated that you have memorized the word!";
+    public static final String MESSAGE_SUCCESS = "Great Job! You have indicated that you have memorized the word!\n";
     /**
      * Creates an YesCommand.
      */
@@ -32,13 +32,15 @@ public class YesCommand extends Command {
         FlashCard response = model.nextReviewWord();
         response.updateLevel(true);
         response.recallFlashCard();
+        // Deals with the case where there's no more words to review
         if (!model.hasNextRound()) {
             SessionManager.getInstance().setSession(false);
             model.updateFilteredFlashCardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(MESSAGE_SUCCESS + "\n" + "\nYou have no more words to review!");
+            return new CommandResult(MESSAGE_SUCCESS + "\nYou have no more words to review!");
         }
+        // Deals with the case where there's more words to review
         model.nextReviewWord();
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + "\nThe next word is: ");
+        return new CommandResult(MESSAGE_SUCCESS + "\nThe next word is: ");
     }
 
     @Override

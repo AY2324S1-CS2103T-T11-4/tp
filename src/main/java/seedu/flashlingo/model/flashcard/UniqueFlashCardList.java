@@ -82,11 +82,6 @@ public class UniqueFlashCardList implements Iterable<FlashCard> {
         }
     }
 
-    public void setFlashCards(UniqueFlashCardList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code flashCards}.
      * {@code flashCards} must not contain duplicate flashCards.

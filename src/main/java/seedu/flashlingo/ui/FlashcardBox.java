@@ -66,16 +66,15 @@ public class FlashcardBox extends UiPart<Region> {
         original.setWrapText(true);
         translation.setWrapText(true);
         id.setText(displayedIndex + ") ");
-        original.setText(fc.getOriginalWord().toString() + ": ");
+        original.setText(fc.getOriginalWord().getWord() + ": ");
         if (fc.getIsRevealed()) {
-            translation.setText(flashCard.getTranslatedWord().toString());
+            translation.setText(flashCard.getTranslatedWord().getWord());
             reveal.setText(" Hide ");
         } else {
             translation.setText("");
             reveal.setText("Reveal");
         }
-        level.setText("Proficiency Level: " + fc.getProficiencyLevel().getLevel());
-        lang.setText("Translation language: " + fc.getTranslatedWord().getLanguage());
+        level.setText("Current Level: " + fc.getProficiencyLevel().toString());
     }
 
     /**

@@ -5,9 +5,16 @@ skinparam ArrowFontSize 12
 
 start
 :User executes YesCommand;
-:Call execute();
-:Call rememberWord(true);
+:Call execute(Model);
 :Call nextReviewWord();
-:Generate CommandResult;
+:Call updateLevel(true);
+:Call recallFlashCard();
+if () then ([hasNextRound()])
+  :Call nextReviewWord();
+else ([else])
+  :Set Session to false;
+  :Update Filtered FlashCard List;
+  :Generate CommandResult;
+endif
 stop
 @enduml

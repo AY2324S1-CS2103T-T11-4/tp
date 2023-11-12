@@ -13,7 +13,7 @@ import seedu.flashlingo.model.flashcard.FlashCard;
 import seedu.flashlingo.session.SessionManager;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of flash cards.
  */
 public class FlashcardListPanel extends UiPart<Region> {
     private static final String FXML = "FlashcardListPanel.fxml";
@@ -24,7 +24,7 @@ public class FlashcardListPanel extends UiPart<Region> {
     private MainWindow mw;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FlashCardsListPanel} with the given {@code ObservableList}.
      */
     public FlashcardListPanel(ObservableList<FlashCard> flashcardList, MainWindow mw) {
         super(FXML);
@@ -37,7 +37,7 @@ public class FlashcardListPanel extends UiPart<Region> {
         flashcardListView.setCellFactory(listView -> new FlashCardListViewCell());
     }
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code flash card} using a {@code FlashCard}.
      */
     class FlashCardListViewCell extends ListCell<FlashCard> {
         @Override

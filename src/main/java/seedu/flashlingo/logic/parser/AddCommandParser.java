@@ -2,7 +2,6 @@ package seedu.flashlingo.logic.parser;
 
 import static seedu.flashlingo.logic.Messages.MESSAGE_EMPTY_VALUE;
 import static seedu.flashlingo.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.flashlingo.logic.Messages.MESSAGE_SAME_WORD;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD_LANGUAGE;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_TRANSLATED_WORD;
@@ -37,37 +36,33 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ORIGINAL_WORD, PREFIX_ORIGINAL_WORD_LANGUAGE,
                 PREFIX_TRANSLATED_WORD, PREFIX_TRANSLATED_WORD_LANGUAGE);
+        return new AddCommand(getOriginalWord(argMultimap), getTranslationWord(argMultimap));
+    }
+    private OriginalWord getOriginalWord(ArgumentMultimap argMultimap) throws ParseException {
         String originalWord = argMultimap.getValue(PREFIX_ORIGINAL_WORD).get().trim();
-        String translationWord = argMultimap.getValue(PREFIX_TRANSLATED_WORD).get().trim();
-
-        if (originalWord.toUpperCase().equals(translationWord.toUpperCase())) {
-            throw new ParseException(String.format(MESSAGE_SAME_WORD, AddCommand.MESSAGE_USAGE));
-        }
-
-        if (originalWord.isEmpty() | translationWord.isEmpty()) {
+        if (originalWord.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_EMPTY_VALUE, AddCommand.MESSAGE_USAGE));
         }
-        try {
-            OriginalWord word;
-            TranslatedWord translation;
-            if (arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_WORD_LANGUAGE)) {
-                word = ParserUtil.parseWord(originalWord,
-                        argMultimap.getValue(PREFIX_ORIGINAL_WORD_LANGUAGE).get());
-            } else {
-                word = ParserUtil.parseWord(originalWord, "");
-            }
-            if (arePrefixesPresent(argMultimap, PREFIX_TRANSLATED_WORD_LANGUAGE)) {
-                translation = ParserUtil.parseTranslation(translationWord,
-                        argMultimap.getValue(PREFIX_TRANSLATED_WORD_LANGUAGE).get());
-            } else {
-                translation = ParserUtil.parseTranslation(translationWord, "");
-            }
-            return new AddCommand(word, translation);
-        } catch (IllegalArgumentException iae) {
-            throw new ParseException(iae.getMessage());
+        if (arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_WORD_LANGUAGE)) {
+            String language = argMultimap.getValue(PREFIX_ORIGINAL_WORD_LANGUAGE).get();
+            return new OriginalWord(originalWord, language);
+        } else {
+            return new OriginalWord(originalWord);
         }
     }
 
+    private TranslatedWord getTranslationWord(ArgumentMultimap argMultimap) throws ParseException {
+        String translationWord = argMultimap.getValue(PREFIX_TRANSLATED_WORD).get().trim();
+        if (translationWord.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_EMPTY_VALUE, AddCommand.MESSAGE_USAGE));
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_TRANSLATED_WORD_LANGUAGE)) {
+            String language = argMultimap.getValue(PREFIX_TRANSLATED_WORD_LANGUAGE).get();
+            return new TranslatedWord(translationWord, language);
+        } else {
+            return new TranslatedWord(translationWord);
+        }
+    }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -75,5 +70,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

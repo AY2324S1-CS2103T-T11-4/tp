@@ -125,7 +125,7 @@
 }
 
 .cell_big_label {
-    -fx-font-size: 15pt;
+    -fx-font-size: 13pt;
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }

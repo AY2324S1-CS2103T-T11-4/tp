@@ -1,7 +1,5 @@
 package seedu.flashlingo.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.showFlashCardAtIndex;
@@ -46,39 +44,4 @@ public class RevealCommandTest {
         assertCommandFailure(revealCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void equals() {
-        RevealCommand revealFirstCommand = new RevealCommand(INDEX_FIRST_FLASHCARD);
-        RevealCommand revealSecondCommand = new RevealCommand(INDEX_SECOND_FLASHCARD);
-
-        // same object -> returns true
-        assertTrue(revealFirstCommand.equals(revealFirstCommand));
-
-        // same values -> returns true
-        RevealCommand revealFirstCommandCopy = new RevealCommand(INDEX_FIRST_FLASHCARD);
-        assertTrue(revealFirstCommand.equals(revealFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(revealFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(revealFirstCommand.equals(null));
-    }
-
-    @Test
-    public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        RevealCommand revealCommand = new RevealCommand(targetIndex);
-        String expected = RevealCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected, revealCommand.toString());
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoFlashCard(Model model) {
-        model.updateFilteredFlashCardList(p -> false);
-
-        assertTrue(model.getFilteredFlashCardList().isEmpty());
-    }
 }

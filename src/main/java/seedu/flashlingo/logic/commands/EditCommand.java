@@ -1,10 +1,15 @@
 package seedu.flashlingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.flashlingo.logic.Messages.MESSAGE_DUPLICATE_FLASHCARD;
+import static seedu.flashlingo.logic.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD;
+import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD_LANGUAGE;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_TRANSLATED_WORD;
+import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_TRANSLATED_WORD_LANGUAGE;
 import static seedu.flashlingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.flashlingo.commons.core.index.Index;
@@ -15,19 +20,20 @@ import seedu.flashlingo.model.Model;
 import seedu.flashlingo.model.flashcard.FlashCard;
 
 /**
- * Edits the details of an existing flashcard in Flashlingo.
+ * Edits the details of an existing flash card in Flashlingo.
  */
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flash card already exists in Flashlingo!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
             + "by the index number used in the displayed flashcard list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ORIGINAL_WORD + "ORIGINAL WORD] "
-            + "[" + PREFIX_TRANSLATED_WORD + "TRANSLATION] \n"
+            + "[" + PREFIX_ORIGINAL_WORD + "WORD] "
+            + "[" + PREFIX_TRANSLATED_WORD + "TRANSLATION] "
+            + "[" + PREFIX_ORIGINAL_WORD_LANGUAGE + "WORD_LANGUAGE] "
+            + "[" + PREFIX_TRANSLATED_WORD_LANGUAGE + "TRANSLATION_LANGUAGE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ORIGINAL_WORD + "bye "
             + PREFIX_TRANSLATED_WORD + "再见";
@@ -49,7 +55,7 @@ public class EditCommand extends Command {
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         FlashCard flashCardToEdit = lastShownList.get(index.getZeroBased());
@@ -61,7 +67,7 @@ public class EditCommand extends Command {
         }
 
         if ((changes.length > 0 && model.hasFlashCard(editedFlashCard)) || flashCardToEdit.equals(editedFlashCard)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_FLASHCARD);
+            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
         model.setFlashCard(flashCardToEdit, editedFlashCard);
         model.updateFilteredFlashCardList(PREDICATE_SHOW_ALL_FLASHCARDS);
@@ -88,7 +94,7 @@ public class EditCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("changes", changes)
+                .add("changes", Arrays.toString(changes))
                 .toString();
     }
 }

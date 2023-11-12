@@ -33,21 +33,21 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the flashcard in the {@code model}'s person list.
+     * Returns the middle index of the flashcard in the {@code model}'s flash card list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredFlashCardList().size() / 2);
     }
 
     /**
-     * Returns the last index of the flashcard in the {@code model}'s person list.
+     * Returns the last index of the flashcard in the {@code model}'s flash card list.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredFlashCardList().size());
     }
 
     /**
-     * Returns the flashcard in the {@code model}'s person list at {@code index}.
+     * Returns the flashcard in the {@code model}'s flash card list at {@code index}.
      */
     public static FlashCard getFlashCard(Model model, Index index) {
         return model.getFilteredFlashCardList().get(index.getZeroBased());

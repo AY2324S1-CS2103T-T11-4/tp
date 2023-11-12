@@ -24,7 +24,7 @@ class JsonSerializableFlashlingo {
     private final List<JsonAdaptedFlashCard> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableFlashlingo} with the given persons.
+     * Constructs a {@code JsonSerializableFlashlingo} with the given flash cards.
      */
     @JsonCreator
     public JsonSerializableFlashlingo(@JsonProperty("flashcards") List<JsonAdaptedFlashCard> flashcards) {

@@ -1,4 +1,9 @@
+//@@author itsNatTan
+
 package seedu.flashlingo.model.flashcard;
+
+import static seedu.flashlingo.commons.util.AppUtil.checkArgument;
+import static seedu.flashlingo.logic.Messages.MESSAGE_SAME_WORD;
 
 import java.util.Date;
 
@@ -17,11 +22,8 @@ public class FlashCard {
     private final TranslatedWord translatedWord;
     private Date whenToReview; // Date the flashcard was needs to be reviewed
     private ProficiencyLevel currentLevel; // How many times successfully remembered
-
     private boolean isRemembered; //if successfully remembers word
-
     private boolean isRevealed = false;
-
     /**
      * Constructor for Flashcard
      *
@@ -36,6 +38,7 @@ public class FlashCard {
         this.whenToReview = whenToReview;
         this.translatedWord = translatedWord;
         this.originalWord = originalWord;
+        checkArgument(isValidWord(originalWord, translatedWord), MESSAGE_SAME_WORD);
     }
 
     /**
@@ -82,6 +85,10 @@ public class FlashCard {
         return this.isRevealed;
     }
 
+    //@@author Song-Mengfei
+    private boolean isValidWord(OriginalWord word, TranslatedWord translate) {
+        return !word.getWord().equalsIgnoreCase(translate.getWord());
+    }
     /**
      * Edits the flashCard
      * @param changes The new word to replace the old word
@@ -107,6 +114,7 @@ public class FlashCard {
                 && otherFlashCard.getTranslatedWord().equals(getTranslatedWord());
     }
 
+    //@@author D-Limiter
     /**
      * Returns true if the original word or the translation contains the keyword.
      * @param inputWord The keyword to check for
@@ -114,36 +122,6 @@ public class FlashCard {
      */
     public boolean hasKeyword(String inputWord) {
         return this.originalWord.hasSubpart(inputWord) || this.translatedWord.hasSubpart(inputWord);
-    }
-
-    /**
-     * Returns true if the review date is before the current date.
-     * @return True or False depending on whether the review date is before the current date
-     */
-    public boolean isOverdue() {
-        return this.whenToReview.before(new Date());
-    }
-
-    /**
-     * Returns true if the original word or the translation is of the language.
-     * @param language The language to check for
-     * @return True or False depending on whether the language is found
-     */
-    public boolean isSameLanguage(String language) {
-        return this.originalWord.isSameLanguage(language) || this.translatedWord.isSameLanguage(language);
-    }
-
-    /**
-     * Update the flash card to next level
-     */
-    public void updateLevel(boolean isSuccess) {
-        if (isSuccess) {
-            getProficiencyLevel().upgradeLevel();
-            updateReviewDate(getProficiencyLevel().calculateNextReviewInterval());
-        } else {
-            getProficiencyLevel().downgradeLevel();
-            updateReviewDate(getProficiencyLevel().calculateNextReviewInterval());
-        }
     }
 
     /**
@@ -166,6 +144,38 @@ public class FlashCard {
     public boolean isRecalled() {
         return this.isRemembered;
     }
+
+    /**
+     * Returns true if the original word or the translation is of the language.
+     * @param language The language to check for
+     * @return True or False depending on whether the language is found
+     */
+    public boolean isSameLanguage(String language) {
+        return this.originalWord.isSameLanguage(language) || this.translatedWord.isSameLanguage(language);
+    }
+
+    //@@author itsNatTan
+    /**
+     * Returns true if the review date is before the current date.
+     * @return True or False depending on whether the review date is before the current date
+     */
+    public boolean isOverdue() {
+        return this.whenToReview.before(new Date());
+    }
+
+    /**
+     * Update the flash card to next level
+     */
+    public void updateLevel(boolean isSuccess) {
+        if (isSuccess) {
+            getProficiencyLevel().upgradeLevel();
+            updateReviewDate(getProficiencyLevel().calculateNextReviewInterval());
+        } else {
+            getProficiencyLevel().downgradeLevel();
+            updateReviewDate(getProficiencyLevel().calculateNextReviewInterval());
+        }
+    }
+
     /**
      * Formats Flashcard for writing to textFile
      *
@@ -174,7 +184,7 @@ public class FlashCard {
     @Override
     public String toString() {
         String sb = originalWord + " | " + originalWord.getLanguage() + " | " + translatedWord + " | "
-                + originalWord.getLanguage() + " | " + whenToReview.toString() + " | " + currentLevel + "\n";
+                + translatedWord.getLanguage() + " | " + whenToReview.toString() + " | " + currentLevel + "\n";
         return sb;
     }
 

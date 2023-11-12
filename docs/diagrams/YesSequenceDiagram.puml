@@ -5,13 +5,14 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashlingoParser" as FlashlingoParser LOGIC_COLOR
+participant "s:YesCommand" as YesCommand LOGIC_COLOR
+participant ":SessionManager" as SessionManager LOGIC_COLOR
+participant "s:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":FlashCard" as FlashCard MODEL_COLOR
-participant ":YesCommand" as YesCommand MODEL_COLOR
-participant ":CommandResult" as CommandResult MODEL_COLOR
 end box
 
 [-> LogicManager : execute("yes")
@@ -20,34 +21,39 @@ activate LogicManager
 LogicManager -> FlashlingoParser : parseCommand("yes")
 activate FlashlingoParser
 
+create YesCommand
 FlashlingoParser -> YesCommand : Create instance
 activate YesCommand
 
-YesCommand -> Model : rememberWord(true)
+
+YesCommand -> Model: nextReviewWord()
 activate Model
-
-Model -> FlashCard : flashCard.updateLevel(true)
+YesCommand -> FlashCard: updateLevel(true)
 activate FlashCard
-
-FlashCard -> FlashCard : upgradeLevel()
-FlashCard -> FlashCard : updateReviewDate()
-FlashCard -> FlashCard : set toDelete
-FlashCard --> Model : Return from updateLevel method
+YesCommand -> FlashCard: recallFlashCard()
 deactivate FlashCard
+YesCommand -> Model: hasNextRound()
 
-Model --> YesCommand : Return from rememberWord method
-deactivate Model
+alt No more words to review
+    YesCommand -> SessionManager: setSession(false)
+    activate SessionManager
+    SessionManager -> Model: updateFilteredFlashCardList()
+    deactivate SessionManager
+    create CommandResult
+    YesCommand -> CommandResult : CommandResult()
+    activate CommandResult
+    CommandResult --> LogicManager : return CommandResult
+    deactivate CommandResult
+else More words to review
+    YesCommand -> Model: nextReviewWord()
+    deactivate Model
+    create CommandResult
+    YesCommand -> CommandResult : CommandResult()
+    activate CommandResult
+    CommandResult --> LogicManager : return CommandResult
+    deactivate CommandResult
+end
 
-YesCommand -> CommandResult : Create CommandResult
-activate CommandResult
-
-CommandResult --> YesCommand
-deactivate CommandResult
-
-YesCommand --> FlashlingoParser : Return CommandResult
-deactivate YesCommand
-
-FlashlingoParser --> LogicManager : Return result
 deactivate FlashlingoParser
 
 [<--LogicManager

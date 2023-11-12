@@ -1,10 +1,12 @@
 package seedu.flashlingo.logic.parser;
 
+import static seedu.flashlingo.logic.Messages.MESSAGE_EMPTY_VALUE;
 import static seedu.flashlingo.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.TRANSLATION_DESC_AMY;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.TRANSLATION_DESC_BOB;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.VALID_ORIGINAL_WORD_AMY;
 import static seedu.flashlingo.logic.commands.CommandTestUtil.WORD_DESC_AMY;
+import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD;
 import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_TRANSLATED_WORD;
 import static seedu.flashlingo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.flashlingo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -47,5 +49,23 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TRANSLATED_WORD));
+    }
+
+    @Test
+    public void parse_notExistPrefix_failure() {
+        // no existing prefix
+        assertParseFailure(parser, " 1 e/example", MESSAGE_INVALID_FORMAT);
+
+        // invalid format for index
+        assertParseFailure(parser, " <1> w/word", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        // invalid word
+        assertParseFailure(parser, " 1 " + PREFIX_ORIGINAL_WORD, MESSAGE_EMPTY_VALUE);
+
+        // invalid translation
+        assertParseFailure(parser, " 1 " + PREFIX_TRANSLATED_WORD, MESSAGE_EMPTY_VALUE);
     }
 }

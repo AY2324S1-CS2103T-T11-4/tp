@@ -20,7 +20,7 @@ public class NoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicates user hasn't memorized the word.\n"
             + "Example: " + COMMAND_WORD + " ";
 
-    public static final String MESSAGE_SUCCESS = "It seems like that you did not memorize this word well.";
+    public static final String MESSAGE_SUCCESS = "It seems like that you did not memorize this word well.\n";
 
 
     /**
@@ -34,13 +34,15 @@ public class NoCommand extends Command {
         FlashCard response = model.nextReviewWord();
         response.updateLevel(false);
         response.forgetFlashCard();
+        // Deals with the case where there's no more words to review
         if (!model.hasNextRound()) {
             SessionManager.getInstance().setSession(false);
             model.updateFilteredFlashCardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(MESSAGE_SUCCESS + "\n" + "\nYou have no more words to review!");
+            return new CommandResult(MESSAGE_SUCCESS + "\nYou have no more words to review!");
         }
+        // Deals with the case where there's more words to review
         model.nextReviewWord();
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + "\nThe next word is: ");
+        return new CommandResult(MESSAGE_SUCCESS + "\nThe next word is: ");
     }
     @Override
     public boolean equals(Object other) {

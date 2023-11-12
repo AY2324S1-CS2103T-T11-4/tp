@@ -72,11 +72,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getFlashlingoFilePath();
-    }
-
-    @Override
     public Path getFlashlingoFilePath() {
         return model.getFlashlingoFilePath();
     }
@@ -94,10 +89,5 @@ public class LogicManager implements Logic {
     @Override
     public String getTheme() {
         return model.getTheme();
-    }
-
-    @Override
-    public void setTheme(String theme) {
-        model.setTheme(theme);
     }
 }

@@ -1,7 +1,7 @@
 package seedu.flashlingo.logic.commands.exceptions;
 
 /**
- * Represents an error which occurs during execution of a {@link seedu.address.logic.commands.Command}.
+ * Represents an error which occurs during execution of a {@link seedu.flashlingo.logic.commands.Command}.
  */
 public class CommandException extends Exception {
     public CommandException(String message) {

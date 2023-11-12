@@ -61,7 +61,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getFlashlingo(), new UserPrefs());
         expectedModel.deleteFlashCard(flashcardToDelete);
-        showNoPerson(expectedModel);
+        showNoFlashCard(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -97,7 +97,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different flash card -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
@@ -112,7 +112,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoFlashCard(Model model) {
         model.updateFilteredFlashCardList(p -> false);
 
         assertTrue(model.getFilteredFlashCardList().isEmpty());

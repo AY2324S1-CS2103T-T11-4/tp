@@ -17,7 +17,7 @@ import seedu.flashlingo.model.flashcard.words.OriginalWord;
 import seedu.flashlingo.model.flashcard.words.TranslatedWord;
 
 /**
- * Adds a flashcard to Flashlingo.
+ * Adds a flash card to Flashlingo.
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
@@ -38,7 +38,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %s - %s";
     public static final String MESSAGE_DUPLICATE_CARD = "This flashcard already exists";
-    private final FlashCard toAdd;
+    private FlashCard toAdd;
     private OriginalWord original;
     private TranslatedWord translated;
 
@@ -50,7 +50,6 @@ public class AddCommand extends Command {
         requireNonNull(translated);
         this.original = original;
         this.translated = translated;
-        this.toAdd = new FlashCard(original, translated, new Date(), new ProficiencyLevel(1));
     }
 
     /**
@@ -58,16 +57,22 @@ public class AddCommand extends Command {
      */
     public AddCommand(FlashCard flashCard) {
         requireNonNull(flashCard);
-        toAdd = flashCard;
+        this.original = flashCard.getOriginalWord();
+        this.translated = flashCard.getTranslatedWord();
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        try {
+            this.toAdd = new FlashCard(original, translated, new Date(), new ProficiencyLevel(1));
+        } catch (IllegalArgumentException iae) {
+            throw new CommandException(iae.getMessage());
+        }
         if (model.hasFlashCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
         model.addFlashCard(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.original, this.translated));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.original.getWord(), this.translated.getWord()));
     }
 
     @Override
@@ -82,7 +87,7 @@ public class AddCommand extends Command {
         }
 
         AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return original.equals(otherAddCommand.original) && translated.equals(otherAddCommand.translated);
     }
 
     @Override

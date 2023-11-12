@@ -1,5 +1,7 @@
 package seedu.flashlingo.model.flashcard.words;
 
+import static seedu.flashlingo.logic.Messages.MESSAGE_EMPTY_VALUE;
+
 /**
  * Represents the translated word
  *
@@ -16,21 +18,13 @@ public class TranslatedWord extends Word {
     public TranslatedWord(String word, String language) {
         super(word, language);
     }
+
     /**
-     * Evaluates whether this word is an original word
-     * @return True or False depending on whether this is an original word
+     * Constructs a new Translated Word
+     * @param word String to be encapsulated by this Translated Word
      */
-    @Override
-    public boolean isOriginalWord() {
-        return false;
-    }
-    /**
-     * Evaluates whether this word is a translated word
-     * @return True or False depending on whether this is a translated word
-     */
-    @Override
-    public boolean isTranslatedWord() {
-        return true;
+    public TranslatedWord(String word) {
+        super(word, "");
     }
 
     /**
@@ -40,9 +34,13 @@ public class TranslatedWord extends Word {
      */
     @Override
     public TranslatedWord editWord(String newWord, String newLanguage) {
+        if (newWord == null) {
+            newWord = getWord();
+        } else if (newWord.isEmpty()) {
+            throw new IllegalArgumentException(MESSAGE_EMPTY_VALUE);
+        }
         return new TranslatedWord(
-                newWord.isEmpty() ? getWord() : newWord,
-                newLanguage.isEmpty() ? getLanguage() : newLanguage);
+                newWord, newLanguage == null ? getLanguage() : newLanguage);
     }
 
     /**

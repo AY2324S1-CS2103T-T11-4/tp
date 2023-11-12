@@ -21,7 +21,7 @@ public class FlashCardUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code flashCard}'s details.
      */
     public static String getFlashCardDetails(FlashCard flashCard) {
         StringBuilder sb = new StringBuilder();

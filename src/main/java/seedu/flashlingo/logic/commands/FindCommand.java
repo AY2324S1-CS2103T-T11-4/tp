@@ -8,7 +8,7 @@ import seedu.flashlingo.model.Model;
 import seedu.flashlingo.model.flashcard.WordContainsKeywordsPredicate;
 
 /**
- * Finds and lists all flashcards in flashlingo whose original words contains any of the argument keywords.
+ * Finds and lists all flash cards in flashlingo whose original words contains any of the argument keywords.
  */
 public class FindCommand extends Command {
 
@@ -20,7 +20,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " shark";
 
     /**
-     * The predicate used to filter the flashcard list with specified keywords.
+     * The predicate used to filter the flash card list with specified keywords.
      */
     private final WordContainsKeywordsPredicate predicate;
 

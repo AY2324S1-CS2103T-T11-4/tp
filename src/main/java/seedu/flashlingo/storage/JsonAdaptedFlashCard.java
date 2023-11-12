@@ -1,7 +1,5 @@
 package seedu.flashlingo.storage;
 
-import static seedu.flashlingo.logic.Messages.MESSAGE_CONSTRAINTS;
-
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +22,6 @@ public class JsonAdaptedFlashCard {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Flash card's %s field is missing!";
     public static final String INVALID_DATE_FORMAT_MESSAGE = "Invalid date format.";
     public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ssX";
-
     private final String originalWord;
     private final String originalWordLanguage;
     private final String translatedWord;
@@ -79,12 +76,6 @@ public class JsonAdaptedFlashCard {
         if (translatedWord == null || translatedWordLanguage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
               TranslatedWord.class.getSimpleName()));
-        }
-        if (!OriginalWord.isValidLanguage(originalWordLanguage)) {
-            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
-        }
-        if (!TranslatedWord.isValidLanguage(translatedWordLanguage)) {
-            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
         }
 
         final String modelOriginalWord = originalWord;

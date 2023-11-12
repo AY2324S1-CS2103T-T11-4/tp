@@ -158,7 +158,7 @@ class FlashCardTest {
                 level);
         assertEquals(fc1.toString(), originalWord + " | "
                 + originalWord.getLanguage() + " | " + translatedWord + " | "
-                + originalWord.getLanguage() + " | " + date.toString() + " | " + level + "\n");
+                + translatedWord.getLanguage() + " | " + date.toString() + " | " + level + "\n");
     }
 
     @Test

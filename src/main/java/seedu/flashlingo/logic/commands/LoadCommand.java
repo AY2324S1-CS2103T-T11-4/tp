@@ -87,8 +87,8 @@ public class LoadCommand extends Command {
         }
         for (FlashCard flashCard : flashCards) {
             if (model.hasFlashCard(flashCard)) {
-                throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD + flashCard.getOriginalWord() + "-"
-                        + flashCard.getTranslatedWord() + "already in Flashlingo!");
+                throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD + flashCard.getOriginalWord().getWord() + "-"
+                        + flashCard.getTranslatedWord().getWord() + "already in Flashlingo!");
             }
         }
         model.addFlashCards(flashCards);

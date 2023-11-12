@@ -15,7 +15,9 @@ import seedu.flashlingo.model.flashcard.words.TranslatedWord;
 public class FlashCardBuilder {
 
     public static final String ORIGINAL_WORD = "伟大的";
+    public static final String ORIGINAL_WORD_LANGUAGE = "Chinese";
     public static final String TRANSLATED_WORD = "great";
+    public static final String TRANSLATED_WORD_LANGUAGE = "English";
     public static final Date WHEN_TO_REVIEW = new GregorianCalendar(2023, Calendar.DECEMBER, 17).getTime();
     public static final int LEVEL = 1;
 
@@ -32,8 +34,8 @@ public class FlashCardBuilder {
      * Creates a {@code FlashcardBuilder} with the default details.
      */
     public FlashCardBuilder() {
-        this.originalWord = new OriginalWord(ORIGINAL_WORD, "");
-        this.translatedWord = new TranslatedWord(TRANSLATED_WORD, "");
+        this.originalWord = new OriginalWord(ORIGINAL_WORD, ORIGINAL_WORD_LANGUAGE);
+        this.translatedWord = new TranslatedWord(TRANSLATED_WORD, TRANSLATED_WORD_LANGUAGE);
         this.whenToReview = WHEN_TO_REVIEW;
         this.level = new ProficiencyLevel(LEVEL);
     }
@@ -58,10 +60,26 @@ public class FlashCardBuilder {
     }
 
     /**
+     * Sets the {@code OriginalWord} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withOriginalWord(String word) {
+        this.originalWord = new OriginalWord(word);
+        return this;
+    }
+
+    /**
      * Sets the {@code TranslatedWord} of the {@code FlashCard} that we are building.
      */
     public FlashCardBuilder withTranslatedWord(String translatedWord, String language) {
-        this.translatedWord = new TranslatedWord(translatedWord, "");
+        this.translatedWord = new TranslatedWord(translatedWord, language);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TranslatedWord} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withTranslatedWord(String translatedWord) {
+        this.translatedWord = new TranslatedWord(translatedWord);;
         return this;
     }
 

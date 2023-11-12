@@ -9,8 +9,8 @@ import seedu.flashlingo.model.flashcard.FlashCard;
 public interface ReadOnlyFlashlingo {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the flash cards list.
+     * This list will not contain any duplicate flash cards.
      */
     ObservableList<FlashCard> getFlashCardList();
 

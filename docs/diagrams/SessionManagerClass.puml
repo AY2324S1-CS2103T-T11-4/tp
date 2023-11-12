@@ -1,9 +1,0 @@
-@startuml
-class SessionManager {
-   -instance: SessionManager
-   -isReview: boolean
-   +getInstance(): SessionManager
-   +setSession(editedReview: boolean): void
-    +isReviewSession(): boolean
-}
-@enduml

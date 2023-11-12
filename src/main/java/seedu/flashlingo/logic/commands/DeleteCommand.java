@@ -12,7 +12,7 @@ import seedu.flashlingo.model.Model;
 import seedu.flashlingo.model.flashcard.FlashCard;
 
 /**
- * Deletes a flashcard identified using it's displayed index from Flashlingo.
+ * Deletes a flash card identified using it's displayed index from Flashlingo.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -41,7 +41,8 @@ public class DeleteCommand extends Command {
 
         FlashCard flashCardToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteFlashCard(flashCardToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, Messages.format(flashCardToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS,
+                Messages.format(flashCardToDelete)));
     }
 
     @Override

@@ -8,7 +8,7 @@ import seedu.flashlingo.model.Model;
 import seedu.flashlingo.model.flashcard.WordLanguagePredicate;
 
 /**
- * Finds and lists all flashcards in flashlingo whose original words or translation is a certain language.
+ * Finds and lists all flash cards in flashlingo whose original words or translations are in a certain language.
  */
 public class LanguageCommand extends Command {
 
@@ -20,7 +20,7 @@ public class LanguageCommand extends Command {
             + "Example: " + COMMAND_WORD + " English";
 
     /**
-     * The predicate used to filter the flashcard list with specified language.
+     * The predicate used to filter the flash card list with specified language.
      */
     private final WordLanguagePredicate predicate;
 
@@ -32,7 +32,7 @@ public class LanguageCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFlashCardList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW + "\n",
+                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW,
                         model.getFilteredFlashCardList().size()));
     }
 
