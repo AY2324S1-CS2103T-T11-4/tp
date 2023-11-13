@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 Storage.java with minor modifications
 package seedu.flashlingo.storage;
 
 import java.io.IOException;
@@ -10,7 +12,7 @@ import seedu.flashlingo.model.ReadOnlyUserPrefs;
 import seedu.flashlingo.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends FlashlingoStorage, UserPrefsStorage {
 

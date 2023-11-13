@@ -28,10 +28,9 @@ public class LoadCommand extends Command {
     public static final String COMMAND_WORD = "load";
     public static final String MESSAGE_SUCCESS = "You have successfully loaded file: ";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Loads the xlsx file from specified path.\n"
-            + "Example: " + COMMAND_WORD + " words.xslx";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "Duplicated card ";
+            + "Example: " + COMMAND_WORD + " words.xlsx";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = " flash card already exists!";
     public static final String MESSAGE_EMPTY_WORDS = "Word/translation cannot be empty!";
-
     public final String fileName;
 
     public LoadCommand(String fileName) {
@@ -41,58 +40,71 @@ public class LoadCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        // Tries to access and open the file.
         FileInputStream fis;
         try {
             fis = new FileInputStream(fileName);
         } catch (Exception e) {
             throw new CommandException(MESSAGE_OPEN_FILE_FAIL);
         }
-        ArrayList<String> originalWordList = new ArrayList<>();
-        ArrayList<String> translatedWordList = new ArrayList<>();
-        ArrayList<FlashCard> flashCards = new ArrayList<>();
+
+        // Tries to read the file.
+        ArrayList<FlashCard> flashCards;
         try {
-            Workbook workbook = new XSSFWorkbook(fis);
-            Sheet sheet = workbook.getSheetAt(0);
-            for (Row row : sheet) {
-                String originalWordValue = row.getCell(0) == null ? "" : row.getCell(0).getStringCellValue();
-                String translatedWordValue = row.getCell(1) == null ? "" : row.getCell(1).getStringCellValue();
-                if ((originalWordValue.equals("") && !translatedWordValue.equals("")) || (!originalWordValue.equals("")
-                        && translatedWordValue.equals(""))) {
-                    throw new CommandException(MESSAGE_READ_FILE_FAIL);
-                }
-                if (originalWordValue.equals("")) {
-                    continue;
-                }
-                if (originalWordList.contains(originalWordValue) || translatedWordList.contains(translatedWordValue)) {
-                    throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD + originalWordValue + "-"
-                            + translatedWordValue + " found in file!");
-                }
-                originalWordValue = originalWordValue.trim();
-                translatedWordValue = translatedWordValue.trim();
-                if (originalWordValue.equals("") || translatedWordValue.equals("")) {
-                    throw new CommandException(MESSAGE_EMPTY_WORDS);
-                }
-                originalWordList.add(originalWordValue);
-                translatedWordList.add(translatedWordValue);
-            }
+            flashCards = readFromExcel(fis);
         } catch (CommandException e) {
             throw e;
         } catch (Exception e) {
             throw new CommandException(MESSAGE_READ_FILE_FAIL);
         }
-        for (int i = 0; i < originalWordList.size(); i++) {
-            FlashCard flashCard = new FlashCard(new OriginalWord(originalWordList.get(i), ""),
-                    new TranslatedWord(translatedWordList.get(i), ""), new Date(), new ProficiencyLevel(1));
+
+        addFlashCardsToModel(flashCards, model);
+
+        return new CommandResult(MESSAGE_SUCCESS + fileName, false, false, false);
+    }
+
+    private ArrayList<FlashCard> readFromExcel(FileInputStream fis) throws Exception {
+        ArrayList<FlashCard> flashCards = new ArrayList<>();
+
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0);
+        for (Row row : sheet) {
+            String originalWordValue = row.getCell(0) == null ? "" : row.getCell(0).getStringCellValue();
+            String translatedWordValue = row.getCell(1) == null ? "" : row.getCell(1).getStringCellValue();
+            ArrayList<String> validWords = trimAndVerifyWords(originalWordValue, translatedWordValue);
+            String originalWord = validWords.get(0);
+            String translatedWord = validWords.get(1);
+            FlashCard flashCard = new FlashCard(new OriginalWord(originalWord, ""),
+                    new TranslatedWord(translatedWord, ""), new Date(), new ProficiencyLevel(1));
             flashCards.add(flashCard);
         }
+
+        return flashCards;
+    }
+
+    private ArrayList<String> trimAndVerifyWords(String originalWordValue, String translatedWordValue)
+            throws CommandException {
+        ArrayList<String> validWords = new ArrayList<>();
+        originalWordValue = originalWordValue.trim();
+        translatedWordValue = translatedWordValue.trim();
+        if (originalWordValue.equals("") || translatedWordValue.equals("")) {
+            throw new CommandException(MESSAGE_EMPTY_WORDS);
+        }
+        validWords.add(originalWordValue);
+        validWords.add(translatedWordValue);
+        return validWords;
+    }
+
+    private void addFlashCardsToModel(ArrayList<FlashCard> flashCards, Model model) throws CommandException {
+        // Checks for duplicated flash cards with the app.
         for (FlashCard flashCard : flashCards) {
             if (model.hasFlashCard(flashCard)) {
-                throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD + flashCard.getOriginalWord().getWord() + "-"
-                        + flashCard.getTranslatedWord().getWord() + "already in Flashlingo!");
+                throw new CommandException(flashCard.getOriginalWord().getWord() + "-"
+                        + flashCard.getTranslatedWord().getWord() + MESSAGE_DUPLICATE_FLASHCARD);
             }
         }
         model.addFlashCards(flashCards);
-        return new CommandResult(MESSAGE_SUCCESS + fileName, false, false, false);
     }
 
     @Override

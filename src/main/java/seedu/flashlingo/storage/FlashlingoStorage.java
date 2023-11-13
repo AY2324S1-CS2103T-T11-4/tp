@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 AddressBookStorage.java with minor modifications
 package seedu.flashlingo.storage;
 
 import java.io.IOException;

@@ -115,15 +115,14 @@ public class EditCommandTest {
                         VALID_ORIGINAL_WORD_LANGUAGE)
                 .withTranslatedWord(VALID_TRANSLATION_BOB, VALID_TRANSLATION_LANGUAGE)
                 .build();
-
         String[] changes = new String[]{editedFlashcard.getOriginalWord().getWord(), null,
-                editedFlashcard.getTranslatedWord().getWord(), null};
-        EditCommand editCommand = new EditCommand(indexLastFlashcard, changes);
+                editedFlashcard.getTranslatedWord().getWord(), editedFlashcard.getTranslatedWord().getLanguage()};
 
+        EditCommand editCommand = new EditCommand(indexLastFlashcard, changes);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS,
                 Messages.format(editedFlashcard));
-
         Model expectedModel = new ModelManager(new Flashlingo(model.getFlashlingo()), new UserPrefs());
+
         expectedModel.setFlashCard(lastFlashcard, editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

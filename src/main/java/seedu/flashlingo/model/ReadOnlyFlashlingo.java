@@ -1,10 +1,12 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 ReadOnlyAddressBook.java with minor modifications
 package seedu.flashlingo.model;
 
 import javafx.collections.ObservableList;
 import seedu.flashlingo.model.flashcard.FlashCard;
 
 /**
- * Unmodifiable view of a flashlingo
+ * Unmodifiable view of a flashlingo.
  */
 public interface ReadOnlyFlashlingo {
 

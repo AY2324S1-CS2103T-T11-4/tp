@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 JsonSerializableAddressBook.java with minor modifications
 package seedu.flashlingo.storage;
 
 import java.util.ArrayList;
@@ -18,9 +20,7 @@ import seedu.flashlingo.model.flashcard.FlashCard;
  */
 @JsonRootName(value = "flashlingo")
 class JsonSerializableFlashlingo {
-
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
-
     private final List<JsonAdaptedFlashCard> flashcards = new ArrayList<>();
 
     /**

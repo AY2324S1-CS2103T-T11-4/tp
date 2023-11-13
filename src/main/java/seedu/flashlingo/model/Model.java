@@ -1,3 +1,4 @@
+//@@author
 package seedu.flashlingo.model;
 
 import java.nio.file.Path;
@@ -39,6 +40,7 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //@@author A1WAYSD
     /**
      * Returns the user prefs' theme.
      */
@@ -49,8 +51,12 @@ public interface Model {
      */
     void setTheme(String theme);
 
+    /**
+     * Switches the user prefs' theme between light and dark.
+     */
     void switchTheme();
 
+    //@@author WangCheng0116
     /**
      * Returns the user prefs' Flashlingo file path.
      */
@@ -88,8 +94,10 @@ public interface Model {
      */
     void addFlashCard(FlashCard flashCard);
 
+    //@@author A1WAYSD
     void addFlashCards(ArrayList<FlashCard> flashCards);
 
+    //@@author WangCheng0116
     /**
      * Replaces the given flashcard {@code target} with {@code editedFlashCard}.
      * {@code target} must exist in the Flashlingo .

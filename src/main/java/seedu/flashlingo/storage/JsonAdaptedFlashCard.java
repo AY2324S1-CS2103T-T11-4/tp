@@ -28,6 +28,7 @@ public class JsonAdaptedFlashCard {
     private final String translatedWordLanguage;
     private final String whenToReview;
     private final int level;
+
     /**
      * Constructs a {@code JsonAdaptedFlashCard} with the given flash card details.
      */
@@ -59,10 +60,10 @@ public class JsonAdaptedFlashCard {
         Date whenToReview = source.getWhenToReview();
         ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(whenToReview.toInstant(), ZoneOffset.UTC);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
-        String iso8601Date = formatter.format(zonedDateTime);
-        this.whenToReview = iso8601Date;
+        this.whenToReview = formatter.format(zonedDateTime);
     }
 
+    //Solution below adapted by AB-3 JsonAdaptedPerson.java
     /**
      * Converts this Jackson-friendly adapted flash card object into the model's {@code FlashCard} object.
      *
@@ -93,11 +94,13 @@ public class JsonAdaptedFlashCard {
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(INVALID_DATE_FORMAT_MESSAGE);
         }
+
         final Date modelWhenToReview = Date.from(ZonedDateTime.parse(whenToReview).toInstant());
 
         if (!ProficiencyLevel.isValidProficiencyLevel(level)) {
             throw new IllegalValueException(ProficiencyLevel.MESSAGE_CONSTRAINTS);
         }
+
         final int modelLevel = level;
 
         return new FlashCard(new OriginalWord(modelOriginalWord, modelOriginalWordLanguage),

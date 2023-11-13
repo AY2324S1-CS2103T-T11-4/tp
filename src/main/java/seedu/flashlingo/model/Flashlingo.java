@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 AddressBook.java with minor modifications
 package seedu.flashlingo.model;
 
 import static java.util.Objects.requireNonNull;
@@ -22,7 +24,7 @@ public class Flashlingo implements ReadOnlyFlashlingo {
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * among constructors.
      */
     {
         flashCards = new UniqueFlashCardList();
@@ -67,7 +69,7 @@ public class Flashlingo implements ReadOnlyFlashlingo {
     }
 
     /**
-     * Adds a flashcard to Flashlingo
+     * Adds a flashcard to Flashlingo.
      * The flashcard must not already exist in Flashlingo.
      */
     public void addFlashCard(FlashCard flashCard) {

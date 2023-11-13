@@ -12,7 +12,6 @@ import seedu.flashlingo.commons.core.GuiSettings;
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
-
     private GuiSettings guiSettings = new GuiSettings();
     private Path flashlingoFilePath = Paths.get("data" , "flashlingo.json");
     private String theme = "Default";

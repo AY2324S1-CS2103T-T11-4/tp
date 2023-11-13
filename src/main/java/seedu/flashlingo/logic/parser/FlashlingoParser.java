@@ -35,6 +35,7 @@ import seedu.flashlingo.session.SessionManager;
  * Parses user input.
  */
 public class FlashlingoParser {
+    //@@author
     /**
      * Used for initial separation of command word and args.
      */

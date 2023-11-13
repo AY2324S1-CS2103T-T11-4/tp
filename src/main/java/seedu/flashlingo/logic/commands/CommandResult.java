@@ -65,7 +65,7 @@ public class CommandResult {
     }
 
     /**
-     * shows whether it is switch theme command
+     * Shows whether it is switch theme command.
      * @return whether to switch theme
      */
     public boolean isSwitchTheme() {
@@ -86,12 +86,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && switchTheme == otherCommandResult.switchTheme;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, switchTheme);
     }
 
     @Override
@@ -100,6 +101,7 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("switchTheme", switchTheme)
                 .toString();
     }
 

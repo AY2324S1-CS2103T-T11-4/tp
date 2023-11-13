@@ -1,3 +1,5 @@
+//@@author A1WAYSD
+//Adapted from AB-3 JsonAdaptedPersonTest
 package seedu.flashlingo.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +24,6 @@ import seedu.flashlingo.model.flashcard.words.TranslatedWord;
 public class JsonAdaptedFlashCardTest {
     private static final int INVALID_LEVEL = -1;
     private static final String INVALID_WHEN_TO_REVIEW = "2023-2-12T30:59:59Z";
-
     private static final String VALID_ORIGINAL_WORD = WORD.getOriginalWord().getWord();
     private static final String VALID_ORIGINAL_WORD_LANGUAGE = WORD.getOriginalWord().getLanguage();
     private static final String VALID_TRANSLATED_WORD = WORD.getTranslatedWord().getWord();

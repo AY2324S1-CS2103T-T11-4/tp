@@ -49,9 +49,9 @@ Flashlingo predominantly consists of two main features: **Managing flash cards**
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` installed in your computer.
 
-2. Download the latest `flashlingo.jar` from [here](https://github.com/AY2324S1-CS2103T-T11-4/tp/releases) (Not finished yet).
+2. Download the latest `flashlingo.jar` from [here](https://github.com/AY2324S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Flashlingo.
 
@@ -90,12 +90,15 @@ Flashlingo predominantly consists of two main features: **Managing flash cards**
 
 **:information_source: Notes about the command format:**<br>
 
-| Notation         | Description                                                   | Example Command                                                 | Example Usage                   |
-|------------------|---------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------|
-| `<PARAMETER>`    | Parameter to be supplied by the user                          | `delete <INDEX>`                                                | `delete 1`                      |
-| `[<OPTIONAL>]`   | Indicates an optional parameter                               | `add w/<WORD> t/<TRANSLATION> [wl/WORD_LANG] [tl/TRANSLATION_LANG]` | `add w/Hello t/你好`              |
- | `<PARAMETER...>` | Commands that can take in multiple comma seperated parameters | `find <KEYWORD...>`                                             | `find hello, bye`                |
-| `...`            | Parameter that will not be used                               | `help ...`                                                      | `help 123` is the same as `help` |
+| Notation         | Description                                                   | Example Command                                                         | Example Usage                   |
+|------------------|---------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------|
+| `<PARAMETER>`    | Parameter to be supplied by the user                          | `delete <INDEX>`                                                        | `delete 1`                      |
+| `[<OPTIONAL>]`   | Indicates an optional parameter                               | `add w/<WORD> t/<TRANSLATION> [wl/<WORD_LANG>] [tl/<TRANSLATION_LANG>]` | `add w/Hello t/你好`              |
+ | `<PARAMETER...>` | Commands that can take in multiple comma seperated parameters | `find <KEYWORD...>`                                                     | `find hello, bye`                |
+| `...`            | Parameter that will not be used                               | `help ...`                                                              | `help 123` is the same as `help` |
+
+**:information_source: Notes about the command output:**<br>
+`...` in the command output shown below depends on user input and details of the existing flash cards.
 
 </div>
 
@@ -140,8 +143,6 @@ Output:
     * `add w/雪 t/snow`
     * `add w/雪 t/snow wl/Chinese tl/English`
     * `add w/雪 t/snow wl/Japanese tl/English`
-* Users are allowed to add a flash card with the **empty word language or translation language**<br>
-> Users do not need to specify the language if the language is blank (`""`)
 * Users are **not allowed** to add a flash card with the **same word and translation**<br>
   The following command will cause duplicate error:
     * `add w/sorry t/sorry`
@@ -181,13 +182,13 @@ Output:
 | **After edit** | ![img.png](images/AfterEdit.png)  |
 
 **Note**
-* Users are not allowed to edit a flash card to an existing flash card
 * `<INDEX>` is the index of each flash card in the `list`
-* Users change at **LEAST** one certain parameter by using certain prefix
+* Users must change at **LEAST** one certain parameter by using certain prefix
     * Word: `w/WORD`
     * Word Language: `wl/WORD_LANGUAGE`
     * Translation: `t/TRANSLATION`
     * Translation Language: `tl/TRANSLATION_LANGUAGE`
+* Users are not allowed to edit a flash card to an existing flash card
 > The error message: <br>
 > `This flash card already exists in Flashlingo!`
 
@@ -206,15 +207,13 @@ Output:
 
 **Note**
 * `list` command cannot be used during a review session
-   * To ensure retention, only the flash cards - with the words to be reviewed - can be seen during the review session.
+   * To facilitate learning, only the flash cards - that are to be reviewed - can be seen during the review session.
    * As soon as the review session ends, all the flash cards can be listed once again.
 
 ### Finding a flash card : `find`
 
 Filters the flash card list by the given keywords. All the flash cards whose word or translation contains the keywords will be displayed.
 * The search is case-insensitive. e.g `food` will match `Food`
-* Users can search for specific substring. e.g `oo` will match `food`
-* Users can search for multiple keywords. e.g `food, bye` will match `food` and `bye`
 
 [Command Format](#commands): `find <KEYWORDS...>`
 
@@ -234,7 +233,7 @@ Output:
 Filter the list of flash cards by the specified language. All the flash cards whose word or translation is in the specified language will be displayed.
 * The search is case-insensitive. e.g `french` will match `French`
 
-[Command Format](#commands): `language <SPECIFIED_LANGUAGE>`
+[Command Format](#commands): `language [<SPECIFIED_LANGUAGE>]`
 
 Examples:
 * `language French` displays a list where each word or translation is from French language.
@@ -249,7 +248,7 @@ Examples:
 ### Getting list for revision : `review`
 
 Displays the flash cards of all the words to be reviewed that day
-* The review command will present flash cards selected by Flashlingo based on your level, utilizing the Leitner system.
+* The review command will present flash cards selected by Flashlingo based on your level, as well as the interval between the last review, utilizing the Leitner system.
 * If you wish to view all your saved flash cards without the [Leitner system's](https://en.wikipedia.org/wiki/Leitner_system#) selection criteria, please use the `list` command.
 
 [Command Format](#commands): `review ...`
@@ -260,7 +259,7 @@ Output:
 
 **Note**
 * The message `0 flashcards listed!` occurs when:
-    * There are no flash cards scheduled for today's review.
+    * There are no flash cards scheduled for review at the time when the command is executed.
     
 
 ###  Starts review session : `start`
@@ -272,7 +271,7 @@ Starts a new review session.
 Output: `Review Session has been started.`
 
 **Note**
-* If there are no words to review, users will not be able to start review session. `You have no more words to review!`
+* If there are no words to review, users will not be able to start review session. <br> `You have no more words to review!`
   will be displayed.
 
 
@@ -290,7 +289,7 @@ To show the translation of the flash card in
 
 [Command Format](#commands): `reveal [<INDEX>]`
 
-Output : `Flashcard has been revealed!`  
+Output : `Flashcard has been revealed!...`  
 
 ![img.png](images/Reveal.png)
 
@@ -323,8 +322,6 @@ Output:
 
 ![img.png](images/No.png)
 
-if there's no word left in the review session.  
-
 **Note**
 * Pressing `no` button will have the same effect.
 
@@ -342,7 +339,8 @@ Output:
 ![img.png](images/Stats.png)
 
 **Note**
-* The success rate is calculated solely on the basis of the current session.
+* The success rate is calculated solely on the basis of the current session.  
+
 
 <div id="load">
 
@@ -358,21 +356,24 @@ review session automatically.
 **:information_source: Notes about the file input:**<br>
 * **File format:** The file must be an Excel Workbook with the `.xlsx` extension.
 * **File location:** The file must be located in the **same folder** as the `flashlingo.jar` file.
-* **File content:** The app would only read the **first sheet** of the workbook. The sheet must contain only the following
-  **two** columns:
-    1. First column - The original words
-    2. Second column - The translation of the words
+* **File content:** The app would only read the **first two columns** of the **first sheet** of the workbook. 
+  * The sheet must contain only the following two columns (cannot have blank columns on the left):
+    1. Column A - The original words
+    2. Column B - The translation of the words
+  * The sheet cannot contain empty rows in between all rows with words.
 * **Resources:** A sample file can be found [here](SampleData.xlsx).
 </div>
 
 Output:
-* You have successfully loaded file: `<FILE_NAME>`: Successful loading.
-* File not found or accessible:
-> ⚠️ Make sure the file is in the correct directory with read permission.
-* File cannot be read due to invalid content or format:
->⚠️ Make sure the file contains only two columns with the valid words/translations.
-* Flash card already exists!:
->⚠️ Modify the duplicated word/translation in the file.
+* `You have successfully loaded file: ...`: Successful loading.
+* `File not found or accessible`:  
+⚠️ Make sure the file is in the correct directory with read permission.
+* `File cannot be read due to invalid content or format`:  
+⚠️ Make sure the file contains only two columns with the valid words/translations.
+* `... flash card already exists!`:  
+⚠️ Modify the duplicated word/translation in the file to avoid duplication with the flash cards in the app.
+* `Word/translation cannot be empty!`:  
+⚠️ Ensure all words and translations are not empty spaces.
 
 ### Switching color theme : `switch`
 Switches between light and dark appearance of UI dashboard.
@@ -383,9 +384,9 @@ Switches between light and dark appearance of UI dashboard.
 
 Output:
 
-|  light theme   | ![img.png](images/LightTheme.png) |
+|  Light theme   | ![img.png](images/LightTheme.png) |
 |:--------------:|:---------------------------------:|
-| **dark theme** | ![img.png](images/DarkTheme.png)  |
+| **Dark theme** | ![img.png](images/DarkTheme.png)  |
 
 ### Viewing help : `help`
 
@@ -416,25 +417,34 @@ If your changes to the data file makes its format invalid, Flashlingo will disca
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q: How can I check if I have installed and am using the Java `11` version?**<br>
+**A**: 
+* Open up the terminal. Run the `java -version` command. The output should contain similar information to the following:
+`version "11.0.X"`.
+* If Java `11` is not installed, you may download it again.
+* If you are using lower or higher versions of Java, you may find switch version on [Mac](https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-macos), [Windows](https://stackoverflow.com/questions/26993101/switching-between-different-jdk-versions-in-windows) or [Linux](https://askubuntu.com/questions/740757/switch-between-multiple-java-versions) useful.
+
+
+**Q: How do I transfer my data to another Computer?**<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Flashlingo home folder.
 
-**Q**: How can I import my data to the app?<br>
+**Q: How can I import my data to the app?**<br>
 **A**: Save your words and translations in the format specified above in an Excel file. Move the file to the same folder with `flashlingo.jar`.
 Then, use the `load` command to import the data.
 
-**Q**: What may be the reasons why my data cannot be loaded into the app?<br>
+**Q: What may be the reasons why my data cannot be loaded into the app?**<br>
 **A**: 
 * First, check your file name by opening the located folder. The file name should be directly displayed. Also, you can right-click the file to view the file name in its detailed info.
 * If Flashlingo still cannot read the file, try inputting file name with and without the extension `.xlsx` in the `load` command. This may solve potential issues with file name loading within different systems.
 * Secondly, ensure the content in your file is correctly formatted and valid. All rules can be found [here](#load).
+* There may be issues with loading Excel if you have tried to delete data without using the delete whole row/column function. Copy the entire data (only valid rows and columns) to a new Excel file and try again.
 
-**Q**: After I reviewed a flash card, I edited details of the card by the `edit` command. Will I see these changes immediately reflected in the review session?<br>
+**Q: After I reviewed a flash card, I edited details of the card by the `edit` command. Will I see these changes immediately reflected in the review session?**<br>
 **A**:
 * Unfortunately, no. The card is updated synchronously in the card list and the review session of Flashlingo. However, since the user has already reviewed the same card on the day, the card will not be included in the review session again.
 * To see the edits made, User can use the `list` or `find` command to locate the specific card in the card list. The changes will also be reflected in the next review session for that flash card.
 
-**Q**: If the displayed level of a flash card is "Word Mastered", what can I do if I want to review the card again?<br>
+**Q: If the displayed level of a flash card is "Word Mastered", what can I do if I want to review the card again?**<br>
 **A**:
 * Currently, there's no way for user to manually change the level of a flash card. Flashlingo is designed to automatically remove words that learners are familiar with from the review session.
 * However, if user must review the card, he/she can first use the `delete` command to delete the card and then use the `add` command to re-add the same card. The new card will be reset to level 1 and added in the review session.
@@ -443,25 +453,27 @@ Then, use the `load` command to import the data.
 
 ## Command summary
 
+Refer to [Commands](#commands) if unsure of how to interpret the format.
+
 | Action                  | Format, Examples                                                                                                           | Supported Period       |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------|------------------------|
 | **Add**                 | `add w/<WORD> t/<TRANSLATION> [wl/<WORD_LANGUAGE>] [tl/<TRANSLATION_LANGUAGE>]` <br> e.g., `add w/regarder t/look`         | Outside review session |
-| **Delete**              | `delete <Index>`<br> e.g., `delete 1`                                                                                      | Outside review session |
+| **Delete**              | `delete <INDEX>`<br> e.g., `delete 1`                                                                                      | Outside review session |
 | **Edit**                | `edit <INDEX> [w/<WORD>] [t/<TRANSLATION>] [wl/<WORD_LANGUAGE>] [tl/<TRANSLATION_LANGUAGE>]`<br> e.g., `edit 1 w/bye t/再见` | Outside review session |
-| **Find**                | `find KEYWORD`<br> e.g., `find bye`                                                                                        | Outside review session |
-| **List**                | `list`                                                                                                                     | Outside review session |
-| **Review**              | `review`                                                                                                                   | Outside review session |
-| **Start**               | `start`                                                                                                                    | Outside review session |
-| **End**                 | `end`                                                                                                                      | Inside review session  |
-| **Reveal**              | `reveal <INDEX>`                                                                                                           | Both                   |
-| **Yes**                 | `yes`                                                                                                                      | Inside review session  |
-| **No**                  | `no`                                                                                                                       | Inside review session  |
-| **Learning Statistics** | `stats`                                                                                                                    | Outside review session |
-| **Language**            | `language SPECIFIED_LANGUAGE`<br> e.g., `language French`                                                                  | Outside review session |
+| **Find**                | `find <KEYWORD...>`<br> e.g., `find bye`                                                                                   | Outside review session |
+| **List**                | `list ...`                                                                                                                 | Outside review session |
+| **Review**              | `review ...`                                                                                                               | Outside review session |
+| **Start**               | `start ...`                                                                                                                | Outside review session |
+| **End**                 | `end ...`                                                                                                                  | Inside review session  |
+| **Reveal**              | `reveal [<INDEX>]`                                                                                                         | Both                   |
+| **Yes**                 | `yes ...`                                                                                                                  | Inside review session  |
+| **No**                  | `no ...`                                                                                                                   | Inside review session  |
+| **Learning Statistics** | `stats ...`                                                                                                                | Outside review session |
+| **Language**            | `language [<SPECIFIED_LANGUAGE>]`<br> e.g., `language French`                                                              | Outside review session |
 | **Load**                | `load <FILE_NAME>`<br> e.g., `load SampleData.xlsx`                                                                        | Outside review session |
-| **Switch**              | `switch`                                                                                                                   | Both                   |
-| **Help**                | `help`                                                                                                                     | Outside review session |
-| **Exit**                | `exit`                                                                                                                     | Both                   |
+| **Switch**              | `switch ...`                                                                                                               | Both                   |
+| **Help**                | `help ...`                                                                                                                 | Outside review session |
+| **Exit**                | `exit ...`                                                                                                                 | Both                   |
 
 
 --------------------------------------------------------------------------------------------------------------------

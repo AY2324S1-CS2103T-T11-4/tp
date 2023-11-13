@@ -7,6 +7,10 @@ import static seedu.flashlingo.logic.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW
 import static seedu.flashlingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.flashlingo.testutil.TypicalFlashCards.BENSON;
 import static seedu.flashlingo.testutil.TypicalFlashCards.DANIEL;
+import static seedu.flashlingo.testutil.TypicalFlashCards.ELLE;
+import static seedu.flashlingo.testutil.TypicalFlashCards.KEYWORD_MATCHING_MEIER;
+import static seedu.flashlingo.testutil.TypicalFlashCards.KEYWORD_MATCHING_MEIER_OR_MEYER;
+import static seedu.flashlingo.testutil.TypicalFlashCards.SUBSTRING_ME;
 import static seedu.flashlingo.testutil.TypicalFlashCards.getTypicalFlashlingo;
 
 import java.util.Arrays;
@@ -54,23 +58,43 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noFlashCardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        WordContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredFlashCardList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredFlashCardList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multipleFlashCardsFound() {
+    public void execute_oneKeywords_multipleFlashCardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        WordContainsKeywordsPredicate predicate = preparePredicate("Meier");
+        WordContainsKeywordsPredicate predicate = preparePredicate(KEYWORD_MATCHING_MEIER);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashCardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredFlashCardList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleFlashCardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        WordContainsKeywordsPredicate predicate = preparePredicate(KEYWORD_MATCHING_MEIER_OR_MEYER);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashCardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE), model.getFilteredFlashCardList());
+    }
+
+    @Test
+    public void execute_multipleKeywordsWithNotExistingKeyWord_multipleFlashCardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        WordContainsKeywordsPredicate predicate = preparePredicate(KEYWORD_MATCHING_MEIER + ",notExisting");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashCardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredFlashCardList());
+    }
+
+    @Test
+    public void execute_substringKeywords_multipleFlashCardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        WordContainsKeywordsPredicate predicate = preparePredicate(SUBSTRING_ME);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashCardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE), model.getFilteredFlashCardList());
     }
 
     @Test
@@ -85,6 +109,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private WordContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new WordContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new WordContainsKeywordsPredicate(Arrays.asList(userInput.trim().split(",")));
     }
 }

@@ -15,10 +15,9 @@ import seedu.flashlingo.model.flashcard.words.OriginalWord;
 import seedu.flashlingo.model.flashcard.words.TranslatedWord;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -38,6 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_TRANSLATED_WORD, PREFIX_TRANSLATED_WORD_LANGUAGE);
         return new AddCommand(getOriginalWord(argMultimap), getTranslationWord(argMultimap));
     }
+
     private OriginalWord getOriginalWord(ArgumentMultimap argMultimap) throws ParseException {
         String originalWord = argMultimap.getValue(PREFIX_ORIGINAL_WORD).get().trim();
         if (originalWord.isEmpty()) {
@@ -63,6 +63,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new TranslatedWord(translationWord);
         }
     }
+
+    //@@author
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.

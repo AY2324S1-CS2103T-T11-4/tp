@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 StorageManager.java with minor modifications
 package seedu.flashlingo.storage;
 
 import java.io.IOException;
@@ -15,7 +17,6 @@ import seedu.flashlingo.model.UserPrefs;
  * Manages storage of Flashlingo data in local storage.
  */
 public class StorageManager implements Storage {
-
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private FlashlingoStorage flashlingoStorage;
     private UserPrefsStorage userPrefsStorage;

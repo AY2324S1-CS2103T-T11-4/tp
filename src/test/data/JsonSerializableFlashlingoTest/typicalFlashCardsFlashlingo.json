@@ -5,48 +5,48 @@
     "originalWordLanguage" : "English",
     "translatedWord" : "爱丽丝·宝琳",
     "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "Benson Meier",
     "originalWordLanguage" : "English",
     "translatedWord" : "本森·梅尔",
     "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "Carl Kurz",
     "originalWordLanguage" : "English",
     "translatedWord" : "卡尔·库尔兹",
     "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "Daniel Meier",
     "originalWordLanguage" : "English",
     "translatedWord" : "丹尼尔·梅尔",
     "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "Elle Meyer",
     "originalWordLanguage" : "English",
-    "translatedWord" : "艾尔·迈耶",
-    "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "translatedWord" : "艾爾·邁耶",
+    "translatedWordLanguage" : "Traditional Chinese",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "Fiona Kunz",
     "originalWordLanguage" : "English",
     "translatedWord" : "菲奥娜昆兹",
-    "translatedWordLanguage" : "Mandarin",
-    "whenToReview" : "2023-01-01T00:00:00Z",
+    "translatedWordLanguage" : "Chinese",
+    "whenToReview" : "2023-12-17T00:00:00Z",
     "level" : 1
   }, {
     "originalWord" : "George Best",
     "originalWordLanguage" : "English",
     "translatedWord" : "乔治·贝斯特",
-    "translatedWordLanguage" : "Mandarin",
+    "translatedWordLanguage" : "",
     "whenToReview" : "2023-01-01T00:00:00Z",
     "level" : 1
   } ]

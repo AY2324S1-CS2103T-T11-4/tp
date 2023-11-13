@@ -1,0 +1,17 @@
+{
+  "flashcards" : [ {
+    "originalWord" : "hi",
+    "originalWordLanguage" : "eng",
+    "translatedWord" : "konnichiwa",
+    "translatedWordLanguage" : "jap",
+    "whenToReview" : "2023-10-25T17:34:24Z",
+    "level" : 2
+  },{
+    "originalWord" : "hi",
+    "originalWordLanguage" : "eng",
+    "translatedWord" : "konnichiwa",
+    "translatedWordLanguage" : "jap",
+    "whenToReview" : "2023-10-25T17:34:24Z",
+    "level" : -1
+  }]
+}

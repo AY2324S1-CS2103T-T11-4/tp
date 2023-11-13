@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 JsonUserPrefsStorageTest.java with modifications
 package seedu.flashlingo.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

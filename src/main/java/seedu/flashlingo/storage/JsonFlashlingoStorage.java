@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 JsonAddressBookStorage.java with minor modifications
 package seedu.flashlingo.storage;
 
 import static java.util.Objects.requireNonNull;
@@ -35,7 +37,7 @@ public class JsonFlashlingoStorage implements FlashlingoStorage {
     }
 
     /**
-     * Similar to {@link #readFlashlingo()}.
+     * Functions similarly to {@link #readFlashlingo()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
@@ -64,7 +66,7 @@ public class JsonFlashlingoStorage implements FlashlingoStorage {
     }
 
     /**
-     * Similar to {@link #saveFlashlingo(ReadOnlyFlashlingo)}.
+     * Functions similarly to {@link #saveFlashlingo(ReadOnlyFlashlingo)}.
      *
      * @param filePath location of the data. Cannot be null.
      */

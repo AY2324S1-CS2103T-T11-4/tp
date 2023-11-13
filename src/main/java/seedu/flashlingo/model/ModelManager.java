@@ -24,7 +24,6 @@ import seedu.flashlingo.session.SessionManager;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final Flashlingo flashlingo;
     private final UserPrefs userPrefs;
     private final FilteredList<FlashCard> filteredFlashCards;
@@ -48,6 +47,7 @@ public class ModelManager implements Model {
 
     //=========== UserPrefs ==================================================================================
 
+    //@@author
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -133,6 +133,9 @@ public class ModelManager implements Model {
     @Override
     public void addFlashCards(ArrayList<FlashCard> flashCards) {
         for (FlashCard flashCard : flashCards) {
+            if (flashlingo.hasFlashCard(flashCard)) {
+                continue;
+            }
             flashlingo.addFlashCard(flashCard);
         }
         updateFilteredFlashCardList(PREDICATE_SHOW_ALL_FLASHCARDS);
@@ -222,6 +225,7 @@ public class ModelManager implements Model {
         return toBeRevealed.getTranslatedWord();
     }
 
+    //@@author
     @Override
     public boolean equals(Object other) {
         if (other == this) {

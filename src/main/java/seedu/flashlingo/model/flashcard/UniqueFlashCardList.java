@@ -1,3 +1,5 @@
+//@@author A1WAYSD-reused
+//Reused from AB-3 UniquePersonList.java with minor modifications
 package seedu.flashlingo.model.flashcard;
 
 import static java.util.Objects.requireNonNull;

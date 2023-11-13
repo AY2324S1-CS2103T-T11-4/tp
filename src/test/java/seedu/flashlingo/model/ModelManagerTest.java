@@ -1,3 +1,6 @@
+//@@author A1WAYSD-reused
+//Reused from ModelManagerTest.java with modifications
+//Added test for switchTheme method
 package seedu.flashlingo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

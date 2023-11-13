@@ -1,8 +1,5 @@
 package seedu.flashlingo.testutil;
 
-import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_ORIGINAL_WORD;
-import static seedu.flashlingo.logic.parser.CliSyntax.PREFIX_TRANSLATED_WORD;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,26 +60,16 @@ public class TypicalFlashCards {
             .build();
     public static final FlashCard ELLE = new FlashCardBuilder().withOriginalWord("Elle Meyer",
                     "English")
-            .withTranslatedWord("艾尔·迈耶", "Mandarin")
+            .withTranslatedWord("艾爾·邁耶", "Traditional Chinese")
             .build();
     public static final FlashCard FIONA = new FlashCardBuilder().withOriginalWord("Fiona Kunz",
                     "English")
-            .withTranslatedWord("菲奥娜昆兹", "Mandarin")
+            .withTranslatedWord("菲奥娜昆兹", "Chinese")
             .build();
 
     public static final FlashCard GEORGE = new FlashCardBuilder().withOriginalWord("George Best",
                     "English")
-            .withTranslatedWord("乔治·贝斯特", "Mandarin")
-            .build();
-
-    // Manually added
-    public static final FlashCard HOON = new FlashCardBuilder().withOriginalWord("Hoon Meier",
-                    "English")
-            .withTranslatedWord("胡恩·梅尔", "Mandarin")
-            .build();
-    public static final FlashCard IDA = new FlashCardBuilder().withOriginalWord("Ida Mueller",
-                    "English")
-            .withTranslatedWord("艾达·米勒", "Mandarin")
+            .withTranslatedWord("乔治·贝斯特", "")
             .build();
 
     public static final FlashCard AMY = new FlashCardBuilder().withOriginalWord(CommandTestUtil.VALID_ORIGINAL_WORD_AMY,
@@ -93,18 +80,19 @@ public class TypicalFlashCards {
                     CommandTestUtil.VALID_ORIGINAL_WORD_LANGUAGE)
             .withTranslatedWord(CommandTestUtil.VALID_TRANSLATION_BOB, CommandTestUtil.VALID_TRANSLATION_LANGUAGE)
             .build();
-    public static final String WORD_DESC_AMY = " " + PREFIX_ORIGINAL_WORD + CommandTestUtil.VALID_ORIGINAL_WORD_AMY;
-    public static final String WORD_DESC_BOB = " " + PREFIX_ORIGINAL_WORD
-            + CommandTestUtil.VALID_ORIGINAL_WORD_BOB;
-    public static final String TRANSLATION_DESC_AMY = " " + PREFIX_TRANSLATED_WORD
-            + CommandTestUtil.VALID_TRANSLATION_AMY;
-    public static final String TRANSLATION_DESC_BOB = " " + PREFIX_TRANSLATED_WORD
-            + CommandTestUtil.VALID_TRANSLATION_BOB;
+
     public static final FlashCard WORD = new FlashCardBuilder().withOriginalWord("你好", "Chinese")
             .withTranslatedWord("hi", "English").withLevel(2)
             .withWhenToReview(Date.from(Instant.parse(DEFAULT_WHEN_TO_REVIEW))).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_MEIER = "Meier";
+
+    // A keyword that matches MEIER or MEYER
+    public static final String KEYWORD_MATCHING_MEIER_OR_MEYER = "Meier, Meyer";
+
+    // A substring that matches MEIER or MEYER
+    public static final String SUBSTRING_ME = "me";
 
     private TypicalFlashCards() {} // prevents instantiation
 

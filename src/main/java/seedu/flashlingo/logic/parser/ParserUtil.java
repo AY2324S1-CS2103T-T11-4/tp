@@ -1,3 +1,4 @@
+//@@author
 package seedu.flashlingo.logic.parser;
 
 import seedu.flashlingo.commons.core.index.Index;
@@ -8,7 +9,7 @@ import seedu.flashlingo.logic.parser.exceptions.ParseException;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
+    //@@author
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
