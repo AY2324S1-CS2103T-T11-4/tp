@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add`, `delete`, `edit` and `switch`: [#202](https://github.com/AY2324S1-CS2103T-T11-4/tp/pull/202)
+        * Added documentation for the features `add`, `delete`, `edit`, `find`, `language` and `switch`: [#202](https://github.com/AY2324S1-CS2103T-T11-4/tp/pull/202) [#339](https://github.com/AY2324S1-CS2103T-T11-4/tp/pull/339)
     * Developer Guide:
         * Added implementation details of the features `yes` and `no` commands: [#176](https://github.com/AY2324S1-CS2103T-T11-4/tp/pull/176)
 
