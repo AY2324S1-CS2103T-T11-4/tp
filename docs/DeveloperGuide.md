@@ -805,7 +805,7 @@ In enhancing the functionality of our flashcard system, we considered how users 
 
 **Sample Output:**
 |Before the update | ![img.png](images/Stats.png) |
-|:-----------------|-------------------:|
+|--------------------|----------------------------|
 |**After the update**| ![img.png](images/StatsChart.png) |
 
 ### Enhancement 5: Providing more error messages when failing to load the data file
